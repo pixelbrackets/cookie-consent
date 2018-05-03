@@ -35,6 +35,11 @@ Requirements
 
 * JavaScript
 
+Demo
+----
+
+https://pixelbrackets.gitlab.io/cookie-consent/
+
 Installation
 ------------
 
