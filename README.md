@@ -35,6 +35,11 @@ Requirements
 
 * JavaScript
 
+Installation
+------------
+
+Packagist https://packagist.org/packages/pixelbrackets/cookie-consent
+
 Usage
 -----
 
