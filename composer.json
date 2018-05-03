@@ -1,0 +1,6 @@
+{
+    "name": "pixelbrackets/cookie-consent",
+    "description": "🍪 Standalone script to display a cookie consent to comply with EU cookie law",
+    "license": "GPL-2.0-or-later",
+    "type": "library"
+}
