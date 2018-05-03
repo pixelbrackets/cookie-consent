@@ -1,0 +1,12 @@
+{
+  "name": "pixelbrackets-cookie-consent",
+  "version": "1.0.0",
+  "description": "🍪 Standalone script to display a cookie consent to comply with EU cookie law",
+  "main": "cookie-consent.js",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/pixelbrackets/cookie-consent.git"
+  },
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://gitlab.com/pixelbrackets/cookie-consent/"
+}
