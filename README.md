@@ -34,6 +34,7 @@ Requirements
 ------------
 
 * JavaScript
+* Internet Explorer > 10, Firefox > 48, Chrome > 57
 
 Demo
 ----
