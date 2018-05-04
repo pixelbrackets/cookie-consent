@@ -1,9 +1,37 @@
 // requires a simple cookie lib
 
 /**
- * Init Cookie Consent Bar
+ * Init Cookie Consent Bar (no cookie written yet)
  */
 function initCookieConsentBar() {
+  // only show a cookie bar however if cookies are allowed at all,
+  // otherwise keep »null« as consent level
+  if($.areCookiesEnabled() == false) {
+    return;
+  }
+
+  // set default level
+  bar = document.getElementsByClassName('cookie-consent')[0];
+  level = bar.dataset.level;
+  // dont allow automatic Opt-Ins
+  if (level === undefined || level >= 50) {
+    level = 1;
+  }
+  // dont store cookie for more than 1 year
+  duration = bar.dataset.duration;
+  if (duration === undefined || duration > 8760) {
+    duration = 8;
+  }
+
+  $.cookie('cookie-consent', level, duration*60*1000)
+
+  showCookieConsentBar();
+}
+
+/**
+ * Show Cookie Consent Bar
+ */
+function showCookieConsentBar() {
   bar = document.getElementsByClassName('cookie-consent')[0];
   button = document.getElementsByClassName('cookie-accept')[0];
 
@@ -16,8 +44,19 @@ function initCookieConsentBar() {
  * @return null
  */
 function setEventListeners() {
+  level = button.dataset.level;
+  // set fallback level
+  if (level === undefined) {
+    level = 50;
+  }
+  // dont store cookie for more than 1 year
+  duration = button.dataset.duration;
+  if (duration === undefined || duration > 8760) {
+    duration = 8;
+  }
+
   button.addEventListener('click', function() {
-    $.cookie('cookie-consent', '1', 5*60*1000)
+    $.cookie('cookie-consent', level, duration*60*1000)
     fadeOut(bar, 250);
   });
 }
@@ -53,13 +92,14 @@ function fadeOut(element, speed) {
 
 document.addEventListener('DOMContentLoaded', function() {
   var currentCookieSelection = $.cookie('cookie-consent');
+  console.log(currentCookieSelection);
 
-  // Stop further execution, if the user already allowed cookie usage.
-  if (currentCookieSelection !== null && currentCookieSelection !== undefined) {
-    return;
-  }
-  // Set up cookie bar only if cookies are allowed at all
-  else if ($.areCookiesEnabled()) {
+  // first request ever - show cookie bar and set a default level
+  if(currentCookieSelection === null) {
     initCookieConsentBar();
+  } else if (currentCookieSelection > 0 && currentCookieSelection < 50) {
+    // Keep showing the cookie bar as long as no explicit agreement (Opt-In)
+    // was given yet (level lower than 50)
+    showCookieConsentBar();
   }
 });

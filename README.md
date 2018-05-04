@@ -54,7 +54,7 @@ See `demo.html`, which holds all example files.
 Recommended usage:
 
 - Copy cookie consent bar HTML and integrate it into your own view
-  - Change the labels/text as you want, but keep the markup the same
+  - Change the labels/text as you want, but keep the markup structure the same
 - Integrete `cookie.js` and `cookie-consent.js` into your own view
   - Maybe concat and minify the files according to your own asset structure
 - Either copy the default stylesheet `cookie-consent.css` or write your own
