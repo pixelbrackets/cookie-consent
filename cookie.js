@@ -2,8 +2,23 @@
 if ($ === null || typeof $ !== 'object') {
   var $ = new Object;
 }
-// Source: https://gist.githubusercontent.com/bronson/6707533/raw/7317b0e0d204d00d3b01d06f9f18a09ae4ee6f4e/cookie.js
 
+// Source: https://stackoverflow.com/a/48521179/3894752
+// Note: This will return false on localhost in Chrome https://stackoverflow.com/a/8225269
+$.areCookiesEnabled = function() {
+  try {
+    // Create cookie
+    document.cookie = 'cookietest=1';
+    var cookiesEnabled = document.cookie.indexOf('cookietest=') != -1;
+    // Delete cookie
+    document.cookie = 'cookietest=1; expires=Thu, 01-Jan-1970 00:00:01 GMT';
+    return cookiesEnabled;
+  } catch (e) {
+    return false;
+  }
+}
+
+// Source: https://gist.githubusercontent.com/bronson/6707533/raw/7317b0e0d204d00d3b01d06f9f18a09ae4ee6f4e/cookie.js
 // cookie.js
 //
 // Usage:

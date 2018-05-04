@@ -58,7 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
   if (currentCookieSelection !== null && currentCookieSelection !== undefined) {
     return;
   }
-  else {
+  // Set up cookie bar only if cookies are allowed at all
+  else if ($.areCookiesEnabled()) {
     initCookieConsentBar();
   }
 });
