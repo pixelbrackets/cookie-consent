@@ -3,6 +3,11 @@ Changelog
 
 2018-05-16 Dan Untenzu <mail@pixelbrackets.de>
 
+  * 1.3.1
+  * BUGFIX Set cookie duration in hours
+
+2018-05-16 Dan Untenzu <mail@pixelbrackets.de>
+
   * 1.3.0
   * FEATURE Add consent levels
 
