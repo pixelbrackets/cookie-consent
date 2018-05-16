@@ -23,7 +23,7 @@ function initCookieConsentBar() {
     duration = 8;
   }
 
-  $.cookie('cookie-consent', level, duration*60*1000)
+  $.cookie('cookie-consent', level, duration*60*60*1000)
 
   showCookieConsentBar();
 }
@@ -56,7 +56,7 @@ function setEventListeners() {
   }
 
   button.addEventListener('click', function() {
-    $.cookie('cookie-consent', level, duration*60*1000)
+    $.cookie('cookie-consent', level, duration*60*60*1000)
     fadeOut(bar, 250);
   });
 }
