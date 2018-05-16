@@ -6,6 +6,7 @@
   right: 0;
   bottom: 0;
   overflow: hidden;
+  z-index: 900;
 }
 
 .cookie-consent {
