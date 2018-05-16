@@ -46,6 +46,69 @@ Installation
 
 Packagist https://packagist.org/packages/pixelbrackets/cookie-consent
 
+Preliminary considerations
+--------------------------
+
+The most obvious reason for the EU cookie law is to inform the user about cookie 
+usage. But even more important is the constraint for website operators to think 
+about cookie usage. They should ask themself how intrusive a cookie is, 
+what data does each cookie hold, is its lifespan appropriate to its purpose, 
+is it a first or third‑party cookie, who controls the data?
+
+Instead of saying “we use all kinds of cookies, I dont even know which and why” 
+a website owner should be able to tell why and when cookies are used.
+
+A website needs to differentiate…
+
+* between first-party and third-party cookies,
+* between session and persistent cookies and
+* between necessary and non-necessary cookies.
+
+A cookie is »necessary« if it is required by the service for the sole purpose of 
+communication and storing stateful data. A first-party cookie whichs stores a 
+login state or items in a shopping cart and is limited to a session only 
+(erased when the user closes the browser), may be necessary.
+
+Not all cookies requires a consent, see [European Commission - Internet Handbook](http://ec.europa.eu/ipg/basics/legal/cookies/index_en.htm).
+
+* First‑party session cookies DO NOT require informed consent.
+* First‑party persistent cookies DO require informed consent.
+* Third‑party session and persistent cookies DO require informed consent.
+
+| Origin | Duration | Requires consent |
+| ------ | -------- | ---------------- |
+| First‑party | Session | ❌ |
+| First‑party | Persistent | ✔ (except »necessary« cookies limited to a few hours, like shopping carts)|
+| Third‑party | Session | ✔ |
+| Third‑party | Persistent | ✔ |
+
+Although not mandatory it may be helpful to futher differentiate between 
+different usage types of cookies.
+
+* Necessary cookies = storing stateful data, like a shopping cart or a login status
+* Experience cookies = user preferences, like data previously entered into forms
+* Analytical cookies = target user behaviour, like how often an item was clicked
+
+There are diverging views about how to gain consent from a user.
+
+* Agreement due to continued usage (most often used) → Inform user about 
+  cookie usage and that the website will continute to do so if the user 
+  continues to use the website
+* Opt-Out → Inform user about cookie usage, but let the user disagree to usage 
+  of cookies with a click on a button, after that no cookies (except the 
+  denied consent) are stored
+* Opt-In (recommended) → User aggrees to usage of cookies with a click on a 
+  button, until then no non-necessary cookies are stored
+
+The cookie consent bar should link to a page informing about cookie usage (eg.
+privacy notes)…
+
+* in plain, jargon‑free language
+* why are cookies used (to remember user actions, identify users etc)
+* types of used cookies (eg. session or permanent, first or third‑party)
+* who controls/accesses the cookie‑related information (first or third‑party)
+* how users can withdraw consent (eg. close browser, clear browser cache)
+
 Usage
 -----
 
