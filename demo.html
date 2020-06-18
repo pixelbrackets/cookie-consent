@@ -9,6 +9,7 @@
 </head>
 <body>
 
+  <!-- Consent Bar - Example setting level 20 upon continued usage and level 80 if the user clicks the button -->
   <div class="cookie-consent" data-level="20" data-duration="8">
     <p>We use cookies on this website. <span class="hidden-xs">Cookies are small text files, stored on your computer. We use cookies to provide statistics that help us give you the best experience of our site. By continuing to use the site without changing settings, you are agreeing to our use of cookies.</span>
       <a href="#">Read Privacy Notice</a></p>
@@ -16,7 +17,17 @@
     <button type="button" class="btn btn-primary cookie-accept" data-level="80" data-duration="8760">Ok</button>
   </div>
 
-  <!-- example using fallback values for all configurable options (cookie duration etc) -->
+  <!-- Consent Bar - Example setting level 1 upon continued usage and level 60 if the user clicks the button -->
+  <!--
+  <div class="cookie-consent">
+    <p>We use cookies on this website. <span class="hidden-xs">Cookies are small text files, stored on your computer. We use cookies to provide statistics that help us give you the best experience of our site. By continuing to use the site without changing settings, you are agreeing to our use of cookies.</span>
+      <a href="#">Read Privacy Notice</a></p>
+
+    <button type="button" class="btn btn-primary cookie-accept" data-level="60">Ok</button>
+  </div>
+  -->
+
+  <!-- Consent Bar - Example using fallback values for all configurable options (cookie duration etc) -->
   <!--
   <div class="cookie-consent">
     <p>We use cookies on this website. <span>Cookies are small text files, stored on your computer. We use cookies to provide statistics that help us give you the best experience of our site. By continuing to use the site without changing settings, you are agreeing to our use of cookies.</span>
@@ -26,7 +37,7 @@
   </div>
   -->
 
-  <!-- example translated into german -->
+  <!-- Consent Bar - Example translated into german -->
   <!--
   <div class="cookie-consent">
     <p>Wir verwenden Cookies auf dieser Website. <span class="hidden-xs">Cookies sind kleine Textdateien, die auf Ihrem Computer gespeichert werden. Sie dienen dazu, unsere Seiten nutzerfreundlicher zu machen und diese optimiert darzustellen. Durch die Nutzung unserer Seiten erklären Sie sich mit dem Einsatz von Cookies einverstanden.</span>
@@ -40,10 +51,11 @@
   <p>Demo page made with <a href="https://html5example.com/">html5example.com</a>.</p>
   <p>Cookie Consent repository available at <a href="https://gitlab.com/pixelbrackets/cookie-consent/">GitLab</a> & <a href="https://github.com/pixelbrackets/cookie-consent/">GitHub</a> (Mirror).</p>
 
+  <!-- Consent Scripts -->
   <script src="cookie.js"></script>
   <script src="cookie-consent.js"></script>
 
-  <!-- Example tracker depending on cookie consent -->
+  <!-- Example script depending on cookie consent level -->
   <script src="tracker.js"></script>
 
 </body>

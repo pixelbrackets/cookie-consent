@@ -1,5 +1,4 @@
-Changelog
-=========
+# Changelog
 
 2018-05-16 Dan Untenzu <mail@pixelbrackets.de>
 

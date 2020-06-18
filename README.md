@@ -1,5 +1,4 @@
-Cookie Consent
-==============
+# Cookie Consent
 
 🍪 Standalone script to display a cookie consent to comply with EU cookie law.
 
@@ -14,36 +13,33 @@ Cookie Consent
 - add advertisments
 - add trackers
 - are hard to modify
-- set inline styles → dont allow to separate scripts & styles, which makes it 
+- set inline styles → don't allow separating scripts & styles, which makes it 
   harder to add custom stylesheets
 - have to many styles or no styles at all
 - hardcode labels/text in the JavaScript → limit translations & text changes
-- are too big/complex (mostly because styles, scripts & labels are mixed and the 
-  options to change all of them are more complex then the cookie logic itself)
+- are too big/complex (mostly because styles, scripts & labels are mixed, and the 
+  options to change all of them are more complex than the cookie logic itself)
 
 Goals of this library:
 
 - KISS
 - Separate JavaScript logic, CSS styles and HTML markup
-- Allow to copy/integrate a simple, single JavaScript (no CDN, no framework)
+- Allow to copy/integrate a small, single JavaScript (no CDN, no framework)
 - Allow to change text/labels as desired (eg. in application)
-- Add basic fallbacks (eg. styles), which may be overwritten/removed easily
+- Add basic fallbacks (eg. styles), which may be overwritten/removed/extended
 - Allow to gain different types of consent
-- Dont make any external request
+- Don't make any external request
 
-Requirements
-------------
+## Requirements
 
-* JavaScript
-* Internet Explorer > 10, Firefox > 48, Chrome > 57
+- JavaScript
+- Internet Explorer > 10, Firefox > 48, Chrome > 57
 
-Demo
-----
+## Demo
 
 https://pixelbrackets.gitlab.io/cookie-consent/
 
-Preliminary considerations
---------------------------
+## Preliminary considerations
 
 📚 Please read this section as a prerequisite prior to installing the script.
 
@@ -53,7 +49,7 @@ about cookie usage. They should ask themself how intrusive a cookie is,
 what data does each cookie hold, is its lifespan appropriate to its purpose, 
 is it a first or third‑party cookie, who controls the data?
 
-Instead of saying “we use all kinds of cookies, I dont even know which and why” 
+Instead of saying “we use all kinds of cookies, I don't even know which and why” 
 a website owner should be able to tell why and when cookies are used.
 
 A website needs to differentiate…
@@ -110,32 +106,52 @@ privacy notes)…
 The different origins, usage types and ways to gain consent are considered in 
 this repository. It uses »levels« for this, see sections »Usage & Levels«.
 
-Installation
-------------
+## Installation
 
 Packagist https://packagist.org/packages/pixelbrackets/cookie-consent
 
-Usage
------
+## Usage
 
-See `demo.html`, which holds all example files.
+The most important script of this package is `cookie-consent.js`, which
+handles the consent. Everything else is optional. The script looks for
+certain data attributes in elements with a certain class name. If everything
+is missing, then it will set default values instead.
 
-Recommended usage:
+The script allows different consent »levels«, triggered by different events.
+Read more about these levels in the following chapter.
+
+All other scripts which want to write cookies, must read the given consent level
+to continue or break up.
+
+### Integration
+
+🔰 Take a look at the `demo.html` file, which holds all example files.
 
 - Copy cookie consent bar HTML and integrate it into your own view
-  - Change the labels/text as you want, but keep the markup structure the same
+  - Change the labels/text as you want, but try to keep the markup structure
   - Add a link to a separate privacy page
+  - See the »configuration« section to learn how to change the default values
+    for consent levels and duration
 - Integrete `cookie.js` and `cookie-consent.js` into your own view
   - Maybe concat and minify the files according to your own asset structure
 - Either copy the default stylesheet `cookie-consent.css` or write your own
-- Use the example file `tracker.js` and adapt the content to your own needs
-
-The script allows to use diffent consent »levels« which may be configured 
-and read to allow/disallow any scripts depending on the given consent.
+- The consent level is stored in a cookie called »cookie-consent«, you may
+  write your own actions to change the level or use the value server-sided
+- Adapt all scripts with cookies actions to read the given consent level
+  - The example file `tracker.js` shows how to react to the level in JavaScript
+    ```javascript
+    if ($.cookie('cookie-consent') !== null && $.cookie('cookie-consent') >= 50) { /*consent given*/ }
+    ```
 
 ### Levels
 
-| Level 〽️ | Triggered by | Cookie Bar Visibillity | Cookie Types Allowed | Notes |
+The cookie script sets the following levels. They are triggered by different 
+events, like continued usage of the website or a button click (Opt-In).
+
+All other scripts need to ask for the current level to check whether they are 
+allowed to write a cookie or not.
+
+| Set Level 〽️ | Triggered by | Cookie Bar Visibillity | Cookie Types Allowed | Notes |
 | ----- | ------------ | ---------------------- | -------------------- | ----- |
 | `null` | Browser blocks cookies | Dont show | None | Website may not work |
 | 0 | Opt-Out | Dont show | First Party, Session, Necessary cookies |  |
@@ -149,7 +165,7 @@ and read to allow/disallow any scripts depending on the given consent.
 | 70 | Opt-In | Dont Show | Third-Party, Session, Experience |  |
 | 80 | Opt-In | Dont Show | Third-Party, Persistent, Analytical |  |
 
-### Examples
+#### Examples
 
 * Internal shopping cart → no consent required
 * Internal form wizard (persist user input), shall be allowed by continued usage → requires at least level `10`
@@ -159,54 +175,59 @@ and read to allow/disallow any scripts depending on the given consent.
 * External tracking tool, shall be allowed by continued usage → requires at least level `30`
 * External tracking tool, shall be allowed by Opt-In only → requires at least level `80`
 
-⚠️️️ Example use cases, your use cases and internal requirements may differ.
+⚠️Example use cases, your use cases and internal requirements may differ.
 
-### Required Configuration
+### Configuration
 
-In order to set up and use different levels the following options may be set:
+To let the script set and use different levels it is possible to configure
+which event triggers what consent level and how long this level is valid.
 
-* Level of cookie consent set by agreement due to continued usage
-  * Set in `data-level` attribute of `.cookie-consent`-DIV in `demo.html`
-  * Default value »1«, usually »20«, always lower than »50«
-* Duration of cookie consent set by agreement due to continued usage
-  * Set in `data-duration` attribute of `.cookie-consent`-DIV in `demo.html`
-  * Set in hours
-  * Default value »8«, usually »8«, never greater than »8760« (365 days)
-* Level of cookie consent set by opt-in due to button click
-  * Set in `data-level` attribute of `.cookie-consent`-BUTTON in `demo.html`
-  * Default value »50«, usually »80«
-* Duration of cookie consent set by opt-in due to button click
-  * Set in `data-duration` attribute of `.cookie-accept`-BUTTON in `demo.html`
-  * Set in hours
-  * Default value »8«, usually »8760«, never greater than »8760« (365 days)
+To do so the attributes `data-level` and `data-duration` may be set on two 
+different places.
 
 ❕ It is not mandatory to set these values if the default values are sufficient
-for your use case (default level is »1« = agreement due to continued usage,
-should be good enough for necessary first party cookies).
+for your use case.
 
-Source
-------
+**Triggered by continued usage**
+
+* Level of cookie consent set by agreement due to continued usage
+  * Set in `data-level` attribute of `.cookie-consent` Element (DIV)
+  * Integer, levels as defined in the »levels« table above
+  * Default value »1«, usually »20«, always lower than »50«
+* Duration of cookie consent set by agreement due to continued usage
+  * Set in `data-duration` attribute of `.cookie-consent` Element (DIV)
+  * Integer, duration in hours
+  * Default value »8«, usually »8«, never greater than »8760« (365 days)
+
+**Triggered by Opt-In**
+
+* Level of cookie consent set by opt-in due to button click
+  * Set in `data-level` attribute of `.cookie-accept` Element (BUTTON)
+  * Integer, levels as defined in the »levels« table above
+  * Default value »50«, usually »80«
+* Duration of cookie consent set by opt-in due to button click
+  * Set in `data-duration` attribute of `.cookie-accept` Element (BUTTON)
+  * Integer, duration in hours
+  * Default value »8«, usually »8760«, never greater than »8760« (365 days)
+
+## Source
 
 https://gitlab.com/pixelbrackets/cookie-consent
 
-License
--------
+## License
 
 GNU General Public License version 2 or later
 
 The GNU General Public License can be found at http://www.gnu.org/copyleft/gpl.html.
 
-Author
-------
+## Author
 
 Dan Untenzu (<mail@pixelbrackets.de> / [@pixelbrackets](https://github.com/pixelbrackets))
 
-Changelog
----------
+## Changelog
 
 [./Changelog.md](./Changelog.md)
 
-Contribution
-------------
+## Contribution
 
 This script is Open Source, so please use, patch, extend or fork it.
