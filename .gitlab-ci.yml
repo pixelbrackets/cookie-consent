@@ -3,13 +3,13 @@ image: alpine:latest
 pages:
   stage: deploy
   script:
-  - echo 'Build GitLab Pages'
-  # Either have a »public« folder or generate one…
-  - mkdir public
-  - mv cookie* tracker.js public
-  - mv demo.html public/index.html
+    - echo 'Build GitLab Pages'
+    # Either have a »public« folder or generate one…
+    - mkdir public
+    - mv cookie* tracker.js public
+    - mv demo.html public/index.html
   artifacts:
     paths:
-    - public
+      - public
   only:
-  - master
+    - master
