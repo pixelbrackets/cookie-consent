@@ -63,7 +63,7 @@ communication and storing stateful data. A first-party cookie whichs stores a
 login state or items in a shopping cart and is limited to a session only 
 (erased when the user closes the browser), may be necessary.
 
-Not all cookies requires a consent, see [European Commission - Internet Handbook](http://ec.europa.eu/ipg/basics/legal/cookies/index_en.htm).
+👉 Not all cookies require a consent, see [European Commission - Internet Handbook](http://ec.europa.eu/ipg/basics/legal/cookies/index_en.htm).
 
 * First‑party session cookies DO NOT require informed consent.
 * First‑party persistent cookies DO require informed consent.
@@ -83,16 +83,20 @@ different usage types of cookies.
 * Experience cookies = user preferences, like data previously entered into forms
 * Analytical cookies = target user behaviour, like how often an item was clicked
 
-There are diverging views about how to gain consent from a user.
+* There are diverging views about how to gain consent from a user.
 
-* Agreement due to continued usage (most often used) → Inform user about 
-  cookie usage and that the website will continute to do so if the user 
-  continues to use the website
-* Opt-Out → Inform user about cookie usage, but let the user disagree to usage 
-  of cookies with a click on a button, after that no cookies (except the 
-  denied consent) are stored
-* Opt-In (recommended) → User aggrees to usage of cookies with a click on a 
-  button, until then no non-necessary cookies are stored
+* Agreement due to continued usage → Only inform the user about cookie usage
+  and that the website will continue to do so if the user continues
+  to use the website.
+* Opt-Out → Inform the user about cookie usage, but let the user disagree to
+  usage of cookies with a click on a button. After that existing cookies
+  (except the denied consent) are removed and now new cookies created anymore.
+* Opt-In (recommended) → User agrees to usage of cookies with a click on a 
+  button, until then no non-necessary cookies are stored.
+
+🌪️ *Update:* Please note that since 2020 only an opt-in is a permissible form
+of consent to cookies within the EU! Users must actively consent,
+preset checkboxes or opt-outs are no longer permitted.
 
 The cookie consent bar should link to a page informing about cookie usage (eg.
 privacy notes)…
