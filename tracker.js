@@ -2,7 +2,7 @@
 // Requires the cookie-consent script to
 
 document.addEventListener('DOMContentLoaded', function() {
-  let currentCookieSelection = $.cookie('cookie-consent');
+  var currentCookieSelection = $.cookie('cookie-consent');
 
   console.log('Cookie Consent Level ' + currentCookieSelection);
 
