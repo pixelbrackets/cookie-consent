@@ -10,15 +10,16 @@ function initCookieConsentBar() {
     return;
   }
 
-  // Set default level & duration
-  bar = document.getElementsByClassName('cookie-consent')[0];
-  level = bar.dataset.level;
-  // Don't allow automatic Opt-Ins
+  // Set level & duration due to continued usage
+  let consentBar = document.getElementsByClassName('cookie-consent')[0];
+  let level = consentBar.dataset.level;
+  // Set fallback level for continued usage and restrict the max level
+  // (don't allow automatic opt-ins)
   if (level === undefined || level >= 50) {
     level = 1;
   }
   // Don't store cookie for more than 1 year
-  duration = bar.dataset.duration;
+  let duration = consentBar.dataset.duration;
   if (duration === undefined || duration > 8760) {
     duration = 8;
   }
@@ -32,33 +33,27 @@ function initCookieConsentBar() {
  * Show cookie consent bar until a confirmation button is clicked
  */
 function showCookieConsentBar() {
-  bar = document.getElementsByClassName('cookie-consent')[0];
-  button = document.getElementsByClassName('cookie-accept')[0];
-
-  setEventListeners();
-  fadeIn(bar, 250);
-}
-
-/**
- * Set button actions
- * @return null
- */
-function setEventListeners() {
-  level = button.dataset.level;
+  // Autowire events to opt-in button, set default level & duration if missing
+  let consentBar = document.getElementsByClassName('cookie-consent')[0];
+  let button = document.getElementsByClassName('cookie-accept')[0];
+  let level = button.dataset.level;
   // Set fallback level for opt-in button
   if (level === undefined) {
     level = 50;
   }
   // Don't store consent cookie for more than 1 year
-  duration = button.dataset.duration;
+  let duration = button.dataset.duration;
   if (duration === undefined || duration > 8760) {
     duration = 8;
   }
 
-  button.addEventListener('click', function() {
-    $.cookie('cookie-consent', level, duration*60*60*1000)
-    fadeOut(bar, 250);
+  button.addEventListener('click', function () {
+    $.cookie('cookie-consent', level, duration * 60 * 60 * 1000)
+    fadeOut(consentBar, 250);
   });
+
+  // Setup done, show the consent bar
+  fadeIn(consentBar, 250);
 }
 
 /**
