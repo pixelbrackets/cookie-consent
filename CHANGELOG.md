@@ -1,5 +1,13 @@
 # Changelog
 
+2024-05-31 Dan Kleine <mail@pixelbrackets.de>
+
+  * 1.4.0
+  * FEATURE Add close button
+  * FEATURE Support multiple opt-in buttons
+  * FEATURE Add warning about consent types - In 2020, the EU revised its
+    cookie consent regulations, see README for more details.
+
 2018-05-16 Dan Untenzu <mail@pixelbrackets.de>
 
   * 1.3.1
@@ -25,4 +33,4 @@
 2018-05-03 Dan Untenzu <mail@pixelbrackets.de>
 
   * 1.0.0
-  * FEATURE Inital version
+  * FEATURE Initial version
