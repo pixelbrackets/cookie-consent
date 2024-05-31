@@ -37,13 +37,12 @@
   border-color: #ffeeba;
   border-radius: 7px;
   text-align: center;
-
   padding: 8px 15px;
   display: block;
-  width: 20%;
   margin-left: 10px;
   float: right;
-  max-width: 120px;
+  min-width: 110px;
+  max-width: 220px;
 }
 
 .cookie-consent .btn:hover,

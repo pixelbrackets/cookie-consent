@@ -35,22 +35,26 @@ function initCookieConsentBar() {
 function showCookieConsentBar() {
   // Autowire events to opt-in button, set default level & duration if missing
   let consentBar = document.getElementsByClassName('cookie-consent')[0];
-  let button = document.getElementsByClassName('cookie-accept')[0];
-  let level = button.dataset.level;
-  // Set fallback level for opt-in button
-  if (level === undefined) {
-    level = 50;
-  }
-  // Don't store consent cookie for more than 1 year
-  let duration = button.dataset.duration;
-  if (duration === undefined || duration > 8760) {
-    duration = 8;
-  }
+  let buttons = document.getElementsByClassName('cookie-accept');
 
-  button.addEventListener('click', function () {
-    $.cookie('cookie-consent', level, duration * 60 * 60 * 1000)
-    fadeOut(consentBar, 250);
-  });
+  for (var i = 0; i < buttons.length; i++) {
+    let button = buttons[i];
+    let level = button.dataset.level;
+    // Set fallback level for opt-in button
+    if (level === undefined) {
+      level = 50;
+    }
+    // Don't store consent cookie for more than 1 year
+    let duration = button.dataset.duration;
+    if (duration === undefined || duration > 8760) {
+      duration = 8;
+    }
+
+    button.addEventListener('click', function () {
+      $.cookie('cookie-consent', level, duration * 60 * 60 * 1000)
+      fadeOut(consentBar, 250);
+    });
+  }
 
   // Setup done, show the consent bar
   fadeIn(consentBar, 250);

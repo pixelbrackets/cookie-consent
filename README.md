@@ -86,7 +86,8 @@ different usage types of cookies.
 * Experience cookies = user preferences, like data previously entered into forms
 * Analytical cookies = target user behaviour, like how often an item was clicked
 
-* There are diverging views about how to gain consent from a user.
+When this script was first created, there were still different views
+on how to gain consent from a user.
 
 * Agreement due to continued usage → Only inform the user about cookie usage
   and that the website will continue to do so if the user continues
@@ -94,21 +95,25 @@ different usage types of cookies.
 * Opt-Out → Inform the user about cookie usage, but let the user disagree to
   usage of cookies with a click on a button. After that existing cookies
   (except the denied consent) are removed and now new cookies created anymore.
-* Opt-In (recommended) → User agrees to usage of cookies with a click on a 
-  button, until then no non-necessary cookies are stored.
+* Opt-In → User agrees to usage of cookies with a click on a button,
+  until then no non-necessary cookies are stored.
 
-🌪️ *Update:* Please note that since 2020 only an opt-in is a permissible form
+🌪️ However, please note that since 2020 only an opt-in is a permissible form
 of consent to cookies within the EU! Users must actively consent,
 preset checkboxes or opt-outs are no longer permitted.
+
+Other regions, like the US, have different legal requirements. Consent due to
+continued usage is therefore still supported in this script,
+but should no longer be used within the EU.
 
 The cookie consent bar should link to a page informing about cookie usage (eg.
 privacy notes)…
 
 * in plain, jargon‑free language
-* why are cookies used (to remember user actions, identify users etc)
+* why cookies are used (to remember user actions, identify users etc.)
 * types of used cookies (e.g. session or permanent, first or third‑party)
 * who controls/accesses the cookie‑related information (first or third‑party)
-* how users can withdraw consent (e.g. close browser, clear browser cache)
+* how users can withdraw consent (e.g. close browser, clear cache, opt-out button)
 
 The different origins, usage types and ways to gain consent are considered in 
 this repository. It uses »levels« for this, see sections »Usage & Levels«.
@@ -157,7 +162,7 @@ _Guard clause your own scripts_
     }
     ```
 
-_Optional: Add your own consent events
+_Optional:_ Add your own consent events
 - Write your own actions to change the level stored in cookie `cookie-consent`
   - The example file `tracker.js` shows how to set the level with inline JavaScript
     ```html
@@ -174,26 +179,26 @@ allowed to write a cookie or not.
 
 These behaviours are intended for the following levels:
 
-| Set Level 〽️ | Triggered by | Cookie Bar Visibillity | Cookie Types Allowed | Notes |
-| ----- | ------------ | ---------------------- | -------------------- | ----- |
-| `null` | Browser blocks cookies | Dont show | None | Website may not work |
-| 0 | Opt-Out | Dont show | First Party, Session, Necessary cookies |  |
-| 1 | Agreement due to continued usage | Keep showing | First Party, Session, Necessary cookies |  |
-| 10 | Agreement due to continued usage | Keep showing | First-Party, Persistent, Experience |  |
-| 20 | Agreement due to continued usage | Keep showing | First-Party, Persistent, Analytical |  |
-| 30 | Agreement due to continued usage | Keep showing | Third-Party, Session, Experience |  |
-| 40 | Agreement due to continued usage | Keep showing | Third-Party, Persistent, Analytical |  |
-| 50 | Opt-In | Dont Show | First-Party, Persistent, Experience |  |
-| 60 | Opt-In | Dont Show | First-Party, Persistent, Analytical |  |
-| 70 | Opt-In | Dont Show | Third-Party, Session, Experience |  |
-| 80 | Opt-In | Dont Show | Third-Party, Persistent, Analytical |  |
+| Set Level 〽️ | Triggered by                     | Cookie Bar Visibillity | Cookie Types Allowed                    | Notes                                         |
+|--------------|----------------------------------|------------------------|-----------------------------------------|-----------------------------------------------|
+| `null`       | Browser blocks cookies           | Dont show              | None                                    | Website may not work                          |
+| 0            | Opt-Out                          | Dont show              | First Party, Session, Necessary cookies |                                               |
+| 1            | Agreement due to continued usage | Keep showing           | First Party, Session, Necessary cookies |                                               |
+| 10           | Agreement due to continued usage | Keep showing           | First-Party, Persistent, Experience     |                                               |
+| 20           | Agreement due to continued usage | Keep showing           | First-Party, Persistent, Analytical     |                                               |
+| 30           | Agreement due to continued usage | Keep showing           | Third-Party, Session, Experience        |                                               |
+| 40           | Agreement due to continued usage | Keep showing           | Third-Party, Persistent, Analytical     |                                               |
+| 50           | Opt-In                           | Dont Show              | First-Party, Persistent, Experience     | Missing necessary cookies here? See level `0` |
+| 60           | Opt-In                           | Dont Show              | First-Party, Persistent, Analytical     |                                               |
+| 70           | Opt-In                           | Dont Show              | Third-Party, Session, Experience        |                                               |
+| 80           | Opt-In                           | Dont Show              | Third-Party, Persistent, Analytical     | “Allow all cookies”                           |
 
 🏔️ You may define your own values between these levels or above level 80.
 
 #### Examples
 
 In relation to the table above, the following use cases may require these levels:
-* 
+
 * Internal shopping cart → no consent required (you may check for level `1` or ignore it)
 * Internal form wizard (persist user input), shall be allowed by continued usage → requires at least level `10`
 * Internal tracking tool, shall be allowed by continued usage → requires at least level `20`
@@ -233,9 +238,13 @@ different places.
   * Set in `data-duration` attribute of `.cookie-accept` Element (BUTTON)
   * Integer, duration in hours
   * Default value »8«, usually »8760«, never greater than »8760« (365 days)
+* Note: You may set up multiple opt-in buttons, all they need is a
+  `.cookie-accept` class and the desired `data` attributes
 
 ❕ If the default values are sufficient for your app,
 you even can omit the `data-*` attributes.
+
+🔰 Again, take a look at the `demo.html` file to try out different examples.
 
 ## Source
 
@@ -253,8 +262,8 @@ Dan Kleine (Dan Untenzu) (<mail@pixelbrackets.de> / [@pixelbrackets](https://git
 
 ## Changelog
 
-[./Changelog.md](./Changelog.md)
+See [CHANGELOG.md](./CHANGELOG.md)
 
 ## Contribution
 
-This script is Open Source, so please use, patch, extend or fork it.
+This script is Open Source, so please use, share, patch, extend or fork it.

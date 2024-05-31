@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Cookie Consent</title>
+  <title>Cookie Consent Demo Site</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="cookie-consent.css">
@@ -14,16 +14,17 @@
     <p>We use cookies on this website. <span class="hidden-xs">Cookies are small text files, stored on your computer. We use cookies to provide statistics that help us give you the best experience of our site. By continuing to use the site without changing settings, you are agreeing to our use of cookies.</span>
       <a href="#">Read Privacy Notice</a></p>
 
-    <button type="button" class="btn btn-primary cookie-accept" data-level="80" data-duration="8760">Accept all cookies</button>
+    <button type="button" class="btn btn-primary cookie-accept" data-level="80" data-duration="8760">OK</button>
   </div>
 
-  <!-- Consent Bar - Example setting level 1 upon continued usage and level 60 if the user clicks the button -->
+  <!-- Consent Bar - Best practice example allowing only necessary cookies by default and let users opt in to different consent levels -->
   <!--
   <div class="cookie-consent">
     <p>We use cookies on this website. <span class="hidden-xs">Cookies are small text files, stored on your computer. We use cookies to provide statistics that help us give you the best experience of our site.</span>
       <a href="#">Read Privacy Notice</a></p>
 
-    <button type="button" class="btn btn-primary cookie-accept" data-level="60">Accept cookies</button>
+    <button type="button" class="btn btn-secondary cookie-accept" data-level="0" data-duration="72">Necessary cookies only</button>
+    <button type="button" class="btn btn-primary cookie-accept" data-level="80" data-duration="8760">Accept all cookies</button>
   </div>
   -->
 
@@ -40,23 +41,24 @@
   <!-- Consent Bar - Example translated into german -->
   <!--
   <div class="cookie-consent">
-    <p>Wir verwenden Cookies auf dieser Website. <span class="hidden-xs">Cookies sind kleine Textdateien, die auf Ihrem Computer gespeichert werden. Sie dienen dazu, unsere Seiten nutzerfreundlicher zu machen und diese optimiert darzustellen. Durch die Nutzung unserer Seiten erklären Sie sich mit dem Einsatz von Cookies einverstanden.</span>
+    <p>Wir verwenden Cookies auf dieser Website. <span class="hidden-xs">Cookies sind kleine Textdateien, die auf Ihrem Computer gespeichert werden. Sie dienen dazu, unsere Seiten nutzerfreundlicher zu machen und diese optimiert darzustellen.</span>
       <a href="#">Zur Datenschutzerklärung</a></p>
 
     <button type="button" class="btn btn-primary cookie-accept">Alle Cookies erlauben</button>
   </div>
   -->
 
-  <!-- You may set up your own buttons anywhere to change the consent level as needed -->
+  <!-- You may set up your own additional buttons anywhere to change the consent level as needed -->
   <!--
   <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 0, 720); return false;">Opt-Out</button>
-  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 80, 720); return false;">Accept all cookies</button>
+  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 50, 720); return false;">Accept experience cookies</button>
   -->
 
-  <h1>🍪 Cookie Consent</h1>
-  <p>The consent bar is observed by the <code>cookie-consent.js</code> script and shown until the user clicks the opt-in button. The example <code>tracker.js</code> script will output different messages to the console depending on the stored consent level.</p>
-  <p>Cookie Consent repository available at <a href="https://gitlab.com/pixelbrackets/cookie-consent/">GitLab</a> & <a href="https://github.com/pixelbrackets/cookie-consent/">GitHub</a> (Mirror).</p>
-
+  <h1>🍪 Cookie Consent Demo</h1>
+  <p>The consent bar is observed by the <code>cookie-consent.js</code> script and shown until the user clicks the opt-in button. It is possible to set up multiple buttons to trigger different consent levels (allow necessary cookies only, allow experience cookies, allow all cookies etc.).</p>
+  <p>Warning: The example below is configured to consent due to continued usage. This is not valid anymore in the EU, take a look at the README to learn how to set up correct consent levels.</p>
+  <p>The example <code>tracker.js</code> script will output different messages to the console depending on the stored consent level.</p>
+  <p>The cookie consent repository is available at <a href="https://gitlab.com/pixelbrackets/cookie-consent/">GitLab</a> & <a href="https://github.com/pixelbrackets/cookie-consent/">GitHub</a> (Mirror).</p>
   <p>Demo page made with <a href="https://html5example.com/">html5example.com</a>.</p>
 
   <!-- Cookie Consent Scripts -->
