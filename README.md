@@ -24,6 +24,7 @@
 Goals of this library:
 
 - KISS
+- Minimal footprint - no frameworks, no CDNs, no external requests
 - Separate JavaScript logic, CSS styles and HTML markup
 - Allow to copy/integrate a small, single JavaScript (no CDN, no framework)
 - Allow to change text/labels as desired (e.g. in application)
@@ -35,8 +36,14 @@ Goals of this library:
 
 ## Requirements
 
-- JavaScript
-- Internet Explorer > 10, Edge > 12, Safari > 10, Opera > 49, Firefox > 48, Chrome > 57
+- JavaScript (ES6/ES2015)
+- Modern browsers: Chrome, Firefox, Safari, Edge (latest versions)
+- Legacy support: Internet Explorer > 10, Edge > 12, Safari > 10, Opera > 49, Firefox > 48, Chrome > 57
+
+“🤔 Hmm, this script is from 2018, will it still work with modern apps?” - Yepp, it will.
+This library uses vanilla JavaScript with no dependencies, making it compatible with
+Vue, Svelte, PWAs, Vite, Rollup, or any other modern framework or bundler.
+And, of course, good old plain HTML pages.
 
 ## Demo
 
@@ -69,7 +76,7 @@ in a cookie. Your tracking scripts then check this level before executing.
 
 <!-- 3. Your tracking scripts check the consent level before running -->
 <script>
-  let consentLevel = $.cookie('cookie-consent');
+  const consentLevel = $.cookie('cookie-consent');
 
   // Only run internal analytics if user consented to level 60 or higher
   if (consentLevel >= 60) {
@@ -183,31 +190,39 @@ consent, must read the stored consent level to continue or cancel.
 
 🔰 Take a look at the `demo.html` file, which holds all example files.
 
-_Set up consent bar_
+_Set up cookie consent bar_
+
 - Copy the cookie consent bar HTML and integrate it into your own view
   - Change the labels/text as you want, but try to keep the markup structure
   - Add a link to a separate privacy page
   - See the »configuration« section to learn how to change the default values
     for consent levels and duration
 - Integrate `cookie.js` and `cookie-consent.js` into your own view
-  - Maybe concat and minify the files according to your own asset structure
+  - Import them as ES6 modules in your build pipeline, or copy them to your
+    public assets folder and add `<script>` tags to your HTML
+  - Optionally concatenate and minify the files according to your own asset structure
 - Either copy the default stylesheet `cookie-consent.css` or write your own,
   styles are independent of the script
 - The consent level is stored in a cookie called »cookie-consent«
 
-_Guard clause your own scripts_
-- Adapt all scripts with cookie actions to read the given consent level
-  from `cookie-consent`
-  - The example file `tracker.js` shows how to react to the level in JavaScript
+_Guard clause your own scripts with consent checks_
+
+- Wrap all scripts that use cookies or tracking with conditional checks to verify the user has given appropriate consent
+- Every script that sets cookies, tracks user behavior, or loads third-party services must first read the consent level
+  from the `cookie-consent` cookie and only execute if the consent level meets or exceeds the required threshold
+  for that type of action
+- The example file `tracker.js` demonstrates how to implement these consent checks in JavaScript:
     ```javascript
+    // Always check if consent was given before executing tracking code
     if ($.cookie('cookie-consent') !== null && $.cookie('cookie-consent') >= 50) {
-      /* Consent level 50 given, trigger action */
+      /* User consented to level 50 or higher, safe to trigger action */
     }
     ```
 
 _Optional:_ Add your own consent events
+
 - Write your own actions to change the level stored in cookie `cookie-consent`
-  - The example file `tracker.js` shows how to set the level with inline JavaScript
+  - The example file `demo.html` shows how to set the level with inline JavaScript
     ```html
     <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 80, 720); return false;">Accept all cookies</button>
     ```

@@ -6,12 +6,12 @@
 function initCookieConsentBar() {
   // Only show a cookie bar if cookies are allowed at all, otherwise keep
   // »null« as consent level and retry on the next request
-  if($.areCookiesEnabled() == false) {
+  if (!$.areCookiesEnabled()) {
     return;
   }
 
   // Set level & duration due to continued usage
-  let consentBar = document.getElementsByClassName('cookie-consent')[0];
+  const consentBar = document.getElementsByClassName('cookie-consent')[0];
   let level = consentBar.dataset.level;
   // Set fallback level for continued usage and restrict the max level
   // (don't allow automatic opt-ins)
@@ -24,7 +24,7 @@ function initCookieConsentBar() {
     duration = 8;
   }
 
-  $.cookie('cookie-consent', level, duration*60*60*1000)
+  $.cookie('cookie-consent', level, duration * 60 * 60 * 1000);
 
   showCookieConsentBar();
 }
@@ -34,11 +34,10 @@ function initCookieConsentBar() {
  */
 function showCookieConsentBar() {
   // Autowire events to opt-in button, set default level & duration if missing
-  let consentBar = document.getElementsByClassName('cookie-consent')[0];
-  let buttons = document.getElementsByClassName('cookie-accept');
+  const consentBar = document.getElementsByClassName('cookie-consent')[0];
+  const buttons = document.getElementsByClassName('cookie-accept');
 
-  for (var i = 0; i < buttons.length; i++) {
-    let button = buttons[i];
+  for (const button of buttons) {
     let level = button.dataset.level;
     // Set fallback level for opt-in button
     if (level === undefined) {
@@ -50,8 +49,8 @@ function showCookieConsentBar() {
       duration = 8;
     }
 
-    button.addEventListener('click', function () {
-      $.cookie('cookie-consent', level, duration * 60 * 60 * 1000)
+    button.addEventListener('click', () => {
+      $.cookie('cookie-consent', level, duration * 60 * 60 * 1000);
       fadeOut(consentBar, 250);
     });
   }
@@ -67,7 +66,7 @@ function showCookieConsentBar() {
  * @return null
  */
 function fadeIn(element, speed) {
-  var elementStyle = element.style;
+  const elementStyle = element.style;
   elementStyle.opacity = 0;
   elementStyle.display = 'block';
   (function fade() {
@@ -82,18 +81,18 @@ function fadeIn(element, speed) {
  * @return null
  */
 function fadeOut(element, speed) {
-  var elementStyle = element.style;
+  const elementStyle = element.style;
   elementStyle.opacity = 1;
   (function fade() {
     (elementStyle.opacity -= 0.1) < 0.1 ? elementStyle.display = 'none' : setTimeout(fade, (speed / 10));
   })();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  let currentCookieSelection = $.cookie('cookie-consent');
+document.addEventListener('DOMContentLoaded', () => {
+  const currentCookieSelection = $.cookie('cookie-consent');
 
   // First request ever - show cookie bar and set a default level
-  if(currentCookieSelection === null) {
+  if (currentCookieSelection === null) {
     initCookieConsentBar();
   } else if (currentCookieSelection > 0 && currentCookieSelection < 50) {
     // Keep showing the cookie bar as long as no explicit agreement (Opt-In)
