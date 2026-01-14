@@ -1,5 +1,10 @@
 # Changelog
 
+2026-01-14 Dan Kleine <mail@pixelbrackets.de>
+
+  * 1.5.0
+  * FEATURE Streamline to consistent ES6 syntax
+
 2024-05-31 Dan Kleine <mail@pixelbrackets.de>
 
   * 1.4.0
