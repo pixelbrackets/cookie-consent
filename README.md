@@ -224,7 +224,7 @@ _Optional:_ Add your own consent events
 - Write your own actions to change the level stored in cookie `cookie-consent`
   - The example file `demo.html` shows how to set the level with inline JavaScript
     ```html
-    <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 80, 720); return false;">Accept all cookies</button>
+    <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 80, 31536000000); return false;">Accept all cookies</button>
     ```
 
 ### Levels

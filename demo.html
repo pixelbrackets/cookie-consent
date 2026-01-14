@@ -66,17 +66,21 @@
   <p>The cookie consent repository is available at <a href="https://gitlab.com/pixelbrackets/cookie-consent/">GitLab</a> & <a href="https://github.com/pixelbrackets/cookie-consent/">GitHub</a> (Mirror).</p>
   <p>Demo page made with <a href="https://html5example.com/">html5example.com</a>.</p>
 
-  <!-- Custom consent buttons - You can add your own buttons anywhere on the page to change consent levels
-     Examples:
-     - Level 0 = Opt-out, only necessary cookies (first-party session)
-     - Level 50 = First-party experience cookies (e.g., form data persistence)
-     - Level 60 = First-party analytical cookies (e.g., internal usage statistics)
-     - Level 80 = All cookies including third-party tracking -->
-  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 0, 720); return false;">Opt-Out</button>
   <!--
-  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 0, 720); return false;">Opt-Out (necessary only)</button>
-  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 50, 720); return false;">Accept experience cookies</button>
-  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 60, 720); return false;">Accept analytical cookies</button>
+    Custom consent buttons - You can add your own buttons anywhere on the page to change consent levels
+    Examples:
+    - Level 0 = Opt-out, allow only necessary cookies and hide consent bar
+    - Level 1 = Opt-out, allow only necessary cookies and show consent bar again on next visit
+    - Level 50 = First-party experience cookies (e.g., form data persistence)
+    - Level 60 = First-party analytical cookies (e.g., internal usage statistics)
+    - Level 80 = All cookies including third-party tracking
+    Note: Third parameter is duration in milliseconds (hours * 60 * 60 * 1000)
+  -->
+  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 0, 72 * 60 * 60 * 1000); return false;">Opt-Out</button>
+  <!--
+  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 0, 72 * 60 * 60 * 1000); return false;">Opt-Out (necessary only)</button>
+  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 50, 720 * 60 * 60 * 1000); return false;">Accept experience cookies</button>
+  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 60, 720 * 60 * 60 * 1000); return false;">Accept analytical cookies</button>
   -->
 
   <!-- Cookie Consent Scripts -->
