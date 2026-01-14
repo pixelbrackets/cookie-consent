@@ -42,6 +42,49 @@ Goals of this library:
 
 🚀 https://pixelbrackets.gitlab.io/cookie-consent/
 
+## Quickstart
+
+This README explains cookie laws and how to gain consent using different levels
+at length. If you just want to get a brief overview, read this section first.
+
+**How it works:** This script displays a consent bar and stores the user's consent choice as a numeric "level" (0-80)
+in a cookie. Your tracking scripts then check this level before executing.
+
+**Benefits of consent levels:**
+- Different scripts require different levels for legal reasons (See preliminary considerations)
+- Users can choose granular consent (necessary only, analytics, or all cookies)
+- Your scripts read one simple number to decide whether to run
+
+```html
+<!-- 1. Add the consent bar HTML with opt-in buttons -->
+<div class="cookie-consent">
+  <p>We use cookies. <a href="/privacy">Privacy Policy</a></p>
+  <button class="cookie-accept" data-level="0" data-duration="72">Necessary only</button>
+  <button class="cookie-accept" data-level="80" data-duration="8760">Accept all</button>
+</div>
+
+<!-- 2. Include the scripts -->
+<script src="cookie.js"></script>
+<script src="cookie-consent.js"></script>
+
+<!-- 3. Your tracking scripts check the consent level before running -->
+<script>
+  let consentLevel = $.cookie('cookie-consent');
+
+  // Only run internal analytics if user consented to level 60 or higher
+  if (consentLevel >= 60) {
+    // Initialize your analytics
+  }
+
+  // Only run third-party tracking if user consented to level 80
+  if (consentLevel >= 80) {
+    // Initialize third-party trackers
+  }
+</script>
+```
+
+See the included `demo.html` for complete working examples with different configurations.
+
 ## Preliminary considerations
 
 📚 Please read this section as a prerequisite prior to installing the script.

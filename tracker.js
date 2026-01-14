@@ -1,5 +1,5 @@
 // Requires the cookie script to read cookies
-// Requires the cookie-consent script to
+// Requires the cookie-consent script to set the cookie-consent cookie
 
 document.addEventListener('DOMContentLoaded', function() {
   let currentCookieSelection = $.cookie('cookie-consent');

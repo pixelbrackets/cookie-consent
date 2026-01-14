@@ -9,17 +9,13 @@
 </head>
 <body>
 
-  <!-- Consent Bar - Example setting level 20 for 8 hours upon continued usage, and level 80 for 1 year if the user clicks the button -->
-  <div class="cookie-consent" data-level="20" data-duration="8">
-    <p>We use cookies on this website. <span class="hidden-xs">Cookies are small text files, stored on your computer. We use cookies to provide statistics that help us give you the best experience of our site.</span>
-      By continuing to use the site without changing settings, you are agreeing to our use of cookies.
-      <a href="#">Read Privacy Notice</a></p>
-
-    <button type="button" class="btn btn-primary cookie-accept" data-level="80" data-duration="8760">OK</button>
-  </div>
-
-  <!-- Consent Bar - Best practice example allowing only necessary cookies by default and let users opt in to different consent levels -->
   <!--
+    Consent Bar - Best practice example for EU compliance
+    Multiple opt-in buttons let users choose their consent level (see README for details):
+    - "Necessary cookies only" & Close button = Level 0 (first-party session cookies only, no tracking)
+    - "Accept all cookies" = Level 80 (all cookies including third-party tracking)
+    The consent bar remains visible until user actively clicks a button (no consent by continued usage)
+  -->
   <div class="cookie-consent">
     <button type="button" class="close cookie-accept" data-level="0" data-duration="8">&times;<span class="hidden">Dismiss</span></button>
 
@@ -29,9 +25,31 @@
     <button type="button" class="btn btn-secondary cookie-accept" data-level="0" data-duration="72">Necessary cookies only</button>
     <button type="button" class="btn btn-primary cookie-accept" data-level="80" data-duration="8760">Accept all cookies</button>
   </div>
+
+  <!--
+    Consent Bar - Legacy example using "consent by continued usage"
+    Sets the consent level automatically based on time spent on the site.
+    This is not EU compliant since 2020, but allowed in some non-EU regions like the US.
+    Sets level 20 (allow first-party analytical cookies) for 8 hours, just by visiting the site and continuing to use it,
+    or level 80 (allow all third-party cookies) for 1 year if user clicks the button.
+  -->
+  <!--
+  <div class="cookie-consent" data-level="20" data-duration="8">
+    <p>We use cookies on this website. <span class="hidden-xs">Cookies are small text files, stored on your computer. We use cookies to provide statistics that help us give you the best experience of our site.</span>
+      By continuing to use the site without changing settings, you are agreeing to our use of cookies.
+      <a href="#">Read Privacy Notice</a></p>
+
+    <button type="button" class="btn btn-primary cookie-accept" data-level="80" data-duration="8760">OK</button>
+  </div>
   -->
 
-  <!-- Consent Bar - Example using fallback values for all configurable options (cookie duration etc) -->
+  <!--
+    Consent Bar - Minimal example using fallback values (no data-level or data-duration attributes set)
+    Without explicit configuration, the script uses these defaults:
+    - Continued usage: Level 1 (allows necessary cookies only) for max 8 hours
+    - Button click: Level 50 (allow first-party experience cookies) for max 8 hours
+    This approach still requires explicit opt-in (level >= 50) for non-necessary cookies.
+  -->
   <!--
   <div class="cookie-consent">
     <p>We use cookies on this website. <span>Cookies are small text files, stored on your computer. We use cookies to provide statistics that help us give you the best experience of our site.</span>
@@ -41,24 +59,31 @@
   </div>
   -->
 
-  <!-- You may set up your own additional buttons anywhere to change the consent level as needed -->
-  <!--
-  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 0, 720); return false;">Opt-Out</button>
-  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 50, 720); return false;">Accept experience cookies</button>
-  -->
-
   <h1>🍪 Cookie Consent Demo</h1>
-  <p>The consent bar is observed by the <code>cookie-consent.js</code> script and shown until the user clicks the opt-in button. It is possible to set up multiple buttons to trigger different consent levels (allow necessary cookies only, allow experience cookies, allow all cookies etc.).</p>
-  <p>Warning: The example below is configured to consent due to continued usage. This is not valid anymore in the EU, take a look at the README to learn how to set up correct consent levels.</p>
-  <p>The example <code>tracker.js</code> script will output different messages to the console depending on the stored consent level.</p>
+  <p>The consent bar is observed by the <code>cookie-consent.js</code> script and shown until the user clicks an opt-in button. The example above shows EU-compliant best practice with multiple buttons for different consent levels: "Necessary cookies only" (level 0) or "Accept all cookies" (level 80).</p>
+  <p>The example <code>tracker.js</code> script will output different messages to the console depending on the stored consent level. Open the browser console to see which tracking scripts would be activated based on your choice.</p>
+  <p>Check the HTML source to see alternative examples in the comments, including legacy "consent by continued usage" patterns and minimal configurations using fallback values.</p>
   <p>The cookie consent repository is available at <a href="https://gitlab.com/pixelbrackets/cookie-consent/">GitLab</a> & <a href="https://github.com/pixelbrackets/cookie-consent/">GitHub</a> (Mirror).</p>
   <p>Demo page made with <a href="https://html5example.com/">html5example.com</a>.</p>
+
+  <!-- Custom consent buttons - You can add your own buttons anywhere on the page to change consent levels
+     Examples:
+     - Level 0 = Opt-out, only necessary cookies (first-party session)
+     - Level 50 = First-party experience cookies (e.g., form data persistence)
+     - Level 60 = First-party analytical cookies (e.g., internal usage statistics)
+     - Level 80 = All cookies including third-party tracking -->
+  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 0, 720); return false;">Opt-Out</button>
+  <!--
+  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 0, 720); return false;">Opt-Out (necessary only)</button>
+  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 50, 720); return false;">Accept experience cookies</button>
+  <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 60, 720); return false;">Accept analytical cookies</button>
+  -->
 
   <!-- Cookie Consent Scripts -->
   <script src="cookie.js"></script>
   <script src="cookie-consent.js"></script>
 
-  <!-- Example script depending on cookie consent level -->
+  <!-- Example script depending on set cookie consent level -->
   <script src="tracker.js"></script>
 
 </body>
