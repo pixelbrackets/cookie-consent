@@ -2,6 +2,11 @@
 
 2026-01-14 Dan Kleine <mail@pixelbrackets.de>
 
+  * 1.5.1
+  * BUGFIX Use correct time in opt-out
+
+2026-01-14 Dan Kleine <mail@pixelbrackets.de>
+
   * 1.5.0
   * FEATURE Streamline to consistent ES6 syntax
 

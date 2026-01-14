@@ -1,6 +1,6 @@
 {
   "name": "pixelbrackets-cookie-consent",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "🍪 Standalone script to display a cookie consent to comply with EU cookie law",
   "main": "cookie-consent.js",
   "repository": {
