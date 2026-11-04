@@ -14,15 +14,15 @@
 
     // Set level & duration due to continued usage
     const consentBar = document.getElementsByClassName('cookie-consent')[0];
-    let level = consentBar.dataset.level;
+    let level = parseInt(consentBar.dataset.level, 10);
     // Set fallback level for continued usage and restrict the max level
     // (don't allow automatic opt-ins)
-    if (level === undefined || level >= 50) {
+    if (Number.isNaN(level) || level < 0 || level >= 50) {
       level = 1;
     }
     // Don't store cookie for more than 1 year
-    let duration = consentBar.dataset.duration;
-    if (duration === undefined || duration > 8760) {
+    let duration = parseInt(consentBar.dataset.duration, 10);
+    if (Number.isNaN(duration) || duration < 0 || duration > 8760) {
       duration = 8;
     }
 
@@ -40,14 +40,14 @@
     const buttons = document.getElementsByClassName('cookie-accept');
 
     for (const button of buttons) {
-      let level = button.dataset.level;
+      let level = parseInt(button.dataset.level, 10);
       // Set fallback level for opt-in button
-      if (level === undefined) {
+      if (Number.isNaN(level) || level < 0) {
         level = 50;
       }
       // Don't store consent cookie for more than 1 year
-      let duration = button.dataset.duration;
-      if (duration === undefined || duration > 8760) {
+      let duration = parseInt(button.dataset.duration, 10);
+      if (Number.isNaN(duration) || duration < 0 || duration > 8760) {
         duration = 8;
       }
 
