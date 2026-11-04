@@ -9,5 +9,6 @@ node_modules
 *.bat
 *.sublime-*
 npm-debug.log
+package-lock.json
 .env
 /composer.phar
