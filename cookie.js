@@ -1,5 +1,5 @@
-// Fix: Allow to exist with or without jQuery
-if (typeof $ === 'undefined' || $ === null || typeof $ !== 'object') {
+// Allow to exist with or without jQuery
+if (typeof $ === 'undefined' || $ === null) {
   var $ = {};
 }
 
