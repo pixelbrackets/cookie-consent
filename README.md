@@ -90,7 +90,7 @@ in a cookie. Your tracking scripts then check this level before executing.
 </script>
 ```
 
-See the included `demo.html` for complete working examples with different configurations.
+See the included `demo.html` files for complete working examples with different configurations.
 
 ## Preliminary considerations
 
@@ -188,7 +188,12 @@ consent, must read the stored consent level to continue or cancel.
 
 ### Integration
 
-🔰 Take a look at the `demo.html` file, which holds all example files.
+🔰 Take a look at the demo files:
+
+- `demo.html` - Best practice, EU-compliant opt-in with multiple buttons
+- `demo-granular.html` - EU-compliant opt-in with one button per cookie category
+- `demo-minimal.html` - No configuration, uses fallback values
+- `demo-legacy.html` - Consent by continued usage (not EU-compliant)
 
 _Set up cookie consent bar_
 
@@ -211,7 +216,7 @@ _Guard clause your own scripts with consent checks_
 - Every script that sets cookies, tracks user behavior, or loads third-party services must first read the consent level
   from the `cookie-consent` cookie and only execute if the consent level meets or exceeds the required threshold
   for that type of action
-- The example file `tracker.js` demonstrates how to implement these consent checks in JavaScript:
+- The example file `demo-tracker.js` demonstrates how to implement these consent checks in JavaScript:
     ```javascript
     // Always check if consent was given before executing tracking code
     if ($.cookie('cookie-consent') !== null && $.cookie('cookie-consent') >= 50) {
@@ -225,6 +230,12 @@ _Optional:_ Add your own consent events
   - The example file `demo.html` shows how to set the level with inline JavaScript
     ```html
     <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 80, 31536000000); return false;">Accept all cookies</button>
+    ```
+- Let users change or withdraw their consent, e.g. with a »Cookie settings«
+  link in the footer of your site
+  - The example file `demo.html` shows how to reset the cookie duration time (`-1`)
+    ```html
+    <a href="#" onClick="$.cookie('cookie-consent', '', -1); location.reload(); return false;">Cookie settings</a>
     ```
 
 ### Levels
@@ -302,7 +313,7 @@ different places.
 ❕ If the default values are sufficient for your app,
 you even can omit the `data-*` attributes.
 
-🔰 Again, take a look at the `demo.html` file to try out different examples.
+🔰 Again, take a look at the demo files to try out different examples.
 
 ## Source
 

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Cookie Consent Demo - Granular</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="cookie-consent.css">
+</head>
+<body>
+
+  <!--
+    Consent Bar - Granular example with one opt-in button per cookie category
+    Levels are cumulative, each level includes all lower levels (see README for details):
+    - "Necessary cookies only" & Close button = Level 0 (first-party session cookies only, no tracking)
+    - "Allow comfort cookies" = Level 70 (third-party session cookies of embedded content, e.g. YouTube videos)
+      Includes level 50 (first-party experience cookies) and 60 (first-party analytical cookies)
+    - "Accept all cookies" = Level 80 (all cookies including third-party tracking)
+    The consent bar remains visible until user actively clicks a button (no consent by continued usage)
+  -->
+  <div class="cookie-consent">
+    <button type="button" class="close cookie-accept" data-level="0" data-duration="8">&times;<span class="hidden">Dismiss</span></button>
+
+    <p>We use cookies on this website. <span class="hidden-xs">Cookies are small text files, stored on your computer. We use cookies to show embedded content like videos and to provide statistics that help us give you the best experience of our site.</span>
+      <a href="#">Read Privacy Notice</a></p>
+
+    <button type="button" class="btn btn-secondary cookie-accept" data-level="0" data-duration="72">Necessary cookies only</button>
+    <button type="button" class="btn btn-secondary cookie-accept" data-level="70" data-duration="720">Allow comfort cookies</button>
+    <button type="button" class="btn btn-primary cookie-accept" data-level="80" data-duration="8760">Accept all cookies</button>
+  </div>
+
+  <!-- Demo page content - Explanation only, replace with your own content -->
+  <main>
+    <h1>🍪 Cookie Consent Demo - Granular</h1>
+    <p>EU-compliant opt-in with one button per cookie category: "Necessary cookies only" (level 0), "Allow comfort cookies" like YouTube videos (level 70) or "Accept all cookies" including tracking (level 80). Levels are cumulative, so each level includes all lower levels. The consent bar is shown until the user clicks one of the buttons.</p>
+
+    <p>The example <code>demo-tracker.js</code> script reads the level once on page load and outputs different messages to the browser console. Reload the page after clicking a button to see which tracking scripts would be activated.</p>
+    <p>Current consent level: <strong class="demo-level">not set</strong></p>
+
+    <h2>More examples</h2>
+    <ul>
+      <li><a href="demo.html">Best practice</a> - EU-compliant opt-in with multiple buttons</li>
+      <li><a href="demo-granular.html">Granular</a> - EU-compliant opt-in with one button per cookie category</li>
+      <li><a href="demo-minimal.html">Minimal</a> - No configuration, uses fallback values</li>
+      <li><a href="demo-legacy.html">Legacy</a> - Consent by continued usage (not EU-compliant)</li>
+    </ul>
+  </main>
+
+  <footer>
+    <!-- Opt-Out - Allow only necessary cookies and hide consent bar (level 0), third parameter is duration in milliseconds -->
+    <button type="button" class="btn btn-secondary" onClick="$.cookie('cookie-consent', 0, 72 * 60 * 60 * 1000); location.reload(); return false;">Opt-Out</button>
+
+    <!-- Cookie settings - Delete the consent cookie to show the consent bar again, lets users change or withdraw their consent -->
+    <a href="#" onClick="$.cookie('cookie-consent', '', -1); location.reload(); return false;">Cookie settings</a>
+  </footer>
+
+  <!-- Cookie Consent Scripts -->
+  <script src="cookie.js"></script>
+  <script src="cookie-consent.js"></script>
+
+  <!-- Example script depending on set cookie consent level, replace with your own scripts -->
+  <script src="demo-tracker.js"></script>
+
+</body>
+</html>

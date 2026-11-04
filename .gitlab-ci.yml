@@ -4,10 +4,10 @@ pages:
   stage: deploy
   script:
     - echo 'Build GitLab Pages'
-    # Either have a »public« folder or generate one…
     - mkdir public
-    - mv cookie* tracker.js public
-    - mv demo.html public/index.html
+    - mv cookie* demo* public
+    # Use best practice demo as start page
+    - cp public/demo.html public/index.html
   artifacts:
     paths:
       - public

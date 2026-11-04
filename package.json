@@ -3,6 +3,13 @@
   "version": "1.5.1",
   "description": "🍪 Standalone script to display a cookie consent to comply with EU cookie law",
   "main": "cookie-consent.js",
+  "files": [
+    "cookie.js",
+    "cookie-consent.js",
+    "cookie-consent.css",
+    "demo*",
+    "CHANGELOG.md"
+  ],
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/pixelbrackets/cookie-consent.git"
