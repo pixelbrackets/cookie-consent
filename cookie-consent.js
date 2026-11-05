@@ -54,6 +54,8 @@
       button.addEventListener('click', () => {
         $.cookie('cookie-consent', level, duration * 60 * 60 * 1000);
         fadeOut(consentBar, 250);
+        // Notify dependent scripts, so they can start right away without a reload
+        document.dispatchEvent(new CustomEvent('cookie-consent-change', { detail: { level } }));
       });
     }
 

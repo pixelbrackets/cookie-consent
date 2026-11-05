@@ -233,8 +233,10 @@ _Guard clause your own scripts with consent checks_
       /* User consented to level 50 or higher, safe to trigger action */
     }
     ```
+- You can also listen for the `cookie-consent-change` event to react immediately when a user changes
+  their consent level, allowing your dependent scripts (e.g. tracking) to start without waiting for a page reload.
 
-_Optional:_ Add your own consent events
+_Optional:_ Add your own consent actions
 
 - Write your own actions to change the level stored in cookie `cookie-consent`
   - The example file `demo.html` shows how to set the level with inline JavaScript
