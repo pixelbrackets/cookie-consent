@@ -1,7 +1,6 @@
 // Allow to exist with or without jQuery
-if (typeof $ === 'undefined' || $ === null) {
-  var $ = {};
-}
+// Attach to window explicitly, so $ is global in bundled ES modules as well
+window.$ = window.$ || {};
 
 // Source: https://stackoverflow.com/a/48521179/3894752
 // Note: This will return false on localhost in Chrome https://stackoverflow.com/a/8225269

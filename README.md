@@ -203,12 +203,22 @@ _Set up cookie consent bar_
   - See the »configuration« section to learn how to change the default values
     for consent levels and duration
 - Integrate `cookie.js` and `cookie-consent.js` into your own view
-  - Import them as ES6 modules in your build pipeline, or copy them to your
-    public assets folder and add `<script>` tags to your HTML
+  - Copy the files into your public assets folder and add `<script>` tags to your HTML:
+    ```html
+    <script src="cookie.js"></script>
+    <script src="cookie-consent.js"></script>
+    ```
+  - …or import them in your build pipeline, in the same order:
+    ```javascript
+    import 'pixelbrackets-cookie-consent/cookie.js';
+    import 'pixelbrackets-cookie-consent/cookie-consent.js';
+    ```
+  - The consent bar markup must exist in the DOM when `cookie-consent.js` runs,
+    in single page apps import the script after the markup is rendered
   - Optionally concatenate and minify the files according to your own asset structure
 - Either copy the default stylesheet `cookie-consent.css` or write your own,
   styles are independent of the script
-- The consent level is stored in a cookie called »cookie-consent«
+- The consent level is stored in a cookie called `cookie-consent`
 
 _Guard clause your own scripts with consent checks_
 

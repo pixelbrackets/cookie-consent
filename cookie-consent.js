@@ -90,7 +90,15 @@
     })();
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  /**
+   * Decide whether to show the cookie consent bar
+   */
+  function startCookieConsent() {
+    // No consent bar markup on this page (yet), nothing to do
+    if (document.getElementsByClassName('cookie-consent').length === 0) {
+      return;
+    }
+
     const currentCookieSelection = $.cookie('cookie-consent');
 
     // First request ever - show cookie bar and set a default level
@@ -101,5 +109,13 @@
       // was given yet (level lower than 50)
       showCookieConsentBar();
     }
-  });
+  }
+
+  // Wait for the DOM, or start right away if the script is loaded late
+  // (e.g. async, deferred or bundled scripts)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startCookieConsent);
+  } else {
+    startCookieConsent();
+  }
 })();
