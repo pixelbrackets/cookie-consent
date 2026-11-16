@@ -1,7 +1,7 @@
 // Requires a simple cookie lib, like the bundled cookie.js
 
 // Wrap in IIFE to keep all functions out of the global scope
-(() => {
+;(() => {
   /**
    * Init cookie consent bar (no cookie written yet)
    */

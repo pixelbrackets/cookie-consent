@@ -15,7 +15,7 @@ $.areCookiesEnabled = function() {
   } catch (e) {
     return false;
   }
-}
+};
 
 // Source: https://gist.githubusercontent.com/bronson/6707533/raw/7317b0e0d204d00d3b01d06f9f18a09ae4ee6f4e/cookie.js
 // cookie.js
@@ -43,4 +43,4 @@ $.cookie = function(name, value, ms) {
   date.setTime(date.getTime() + ms);
   const expires = ms ? `;expires=${date.toUTCString()}` : '';
   document.cookie = `${name}=${encodeURIComponent(value)}${expires};path=/`;
-}
+};
