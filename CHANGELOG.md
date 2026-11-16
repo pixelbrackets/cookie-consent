@@ -1,5 +1,15 @@
 # Changelog
 
+2026-11-07 Dan Kleine <mail@pixelbrackets.de>
+
+  * 1.6.0
+  * FEATURE Support late script loading
+  * FEATURE Make tracking demo debug console more speaking
+  * FEATURE Split demos into multiple files
+  * FEATURE Catch faulty input types
+  * BUGFIX Align consent buttons
+  * BUGFIX Encapsulate functions
+
 2026-01-14 Dan Kleine <mail@pixelbrackets.de>
 
   * 1.5.1
