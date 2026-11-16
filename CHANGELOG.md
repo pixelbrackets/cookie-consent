@@ -1,6 +1,11 @@
 # Changelog
 
-2026-11-07 Dan Kleine <mail@pixelbrackets.de>
+2026-11-16 Dan Kleine <mail@pixelbrackets.de>
+
+  * 1.7.0
+  * FEATURE Dispatch event on consent change
+
+2026-11-16 Dan Kleine <mail@pixelbrackets.de>
 
   * 1.6.0
   * FEATURE Support late script loading
